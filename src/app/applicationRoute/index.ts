@@ -1,8 +1,7 @@
-import express from 'express';
 import userRouter from '../Modules/Users/User.Router';
 import menueRouter from '../Modules/Menue/Menue.Router';
 import authRouter from '../Modules/Auth/Auth.router';
-
+import express from 'express';
 const applicationRoute = express.Router();
 
 const allRoutes = [

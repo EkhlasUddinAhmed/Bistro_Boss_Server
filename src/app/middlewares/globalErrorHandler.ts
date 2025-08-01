@@ -1,5 +1,7 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ErrorRequestHandler } from 'express';
+import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
 import { ZodError } from 'zod';
 import { TErrorSources } from '../interface/error';
 
@@ -12,7 +14,12 @@ import handleAppError from '../Errors/handleAppError';
 import handleError from '../Errors/handleError';
 import config from '../config';
 
-const globalErrorHandler: ErrorRequestHandler = (error, _req, res, _next) => {
+const globalErrorHandler: ErrorRequestHandler = (
+  error: any,
+  _req: Request,
+  res: Response,
+  _next:NextFunction,
+) => {
   let statusCode = 500;
   let message = 'Something Went WERONG......!!!';
   let errorSources: TErrorSources[] = [

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextFunction, Request, Response } from 'express';
 import status from 'http-status';
-const notFound = (_req: Request, res: Response, next: NextFunction) => {
+const notFound = (_req: Request, res: Response, _next: NextFunction) => {
   res.status(status.NOT_FOUND).json({
     success: false,
     message: 'Api Not Found',

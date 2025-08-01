@@ -16,9 +16,6 @@ userRouter.get('/',
 // auth(USER_ROLE.superAdmin, USER_ROLE.admin),
 User_Controller_1.UserController.getAllUsers);
 userRouter.patch('/:_id', (0, Auth_authorization_1.default)(Auth_constant_1.USER_ROLE.superAdmin, Auth_constant_1.USER_ROLE.admin), User_Controller_1.UserController.makeUserAdmin);
-userRouter.get('/', (req, res) => {
-    res.status(200).json({ server: 'OK' });
-});
 // userRouter.get(
 //   '/me',
 //   auth(USER_ROLE.admin, USER_ROLE.faculty, USER_ROLE.student),

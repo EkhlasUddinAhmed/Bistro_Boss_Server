@@ -28,13 +28,6 @@ userRouter.patch(
   auth(USER_ROLE.superAdmin, USER_ROLE.admin),
   UserController.makeUserAdmin,
 );
-userRouter.get(
-  '/',
-
-  (req, res) => {
-    res.status(200).json({ server: 'OK' });
-  },
-);
 
 // userRouter.get(
 //   '/me',
