@@ -1,12 +1,22 @@
 import express from 'express';
 import userRouter from '../Modules/Users/User.Router';
+import menueRouter from '../Modules/Menue/Menue.Router';
+import authRouter from '../Modules/Auth/Auth.router';
 
 const applicationRoute = express.Router();
 
 const allRoutes = [
   {
-    path: '/user',
+    path: '/users',
     route: userRouter,
+  },
+  {
+    path: '/menues',
+    route: menueRouter,
+  },
+  {
+    path: '/jwt',
+    route: authRouter,
   },
 ];
 

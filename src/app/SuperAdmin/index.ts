@@ -2,7 +2,6 @@ import config from '../config';
 import { USER_ROLE } from '../Modules/Auth/Auth.constant';
 import { UserModel } from '../Modules/Users/User.Model';
 
-
 const SuperAdmin = {
   userId: 'superAdmin2025',
   password: config.SUPER_ADMIN_PASSWORD,

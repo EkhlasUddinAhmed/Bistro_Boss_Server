@@ -5,16 +5,13 @@ import status from 'http-status';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import config from '../../config';
 import { TUSER_ROLE } from './Auth.interface';
-import {
-  checkingUserExistDeletedBlocked,
-  tokenCreationTimeSmallerThanPasswordChangingTime,
-} from './Auth.utils';
 
 const auth = (...userRequested: TUSER_ROLE[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    const accessToken = req.headers.authorization;
+    const accessTokenString = req.headers.authorization;
 
-    // Check Where Access Token is Sent Or Not..........!!!!
+    const accessToken = (accessTokenString as string).split(' ')[1];
+
     if (!accessToken) {
       throw new AppError(status.FORBIDDEN, 'Forbidden Access...!!!');
     }
@@ -24,26 +21,11 @@ const auth = (...userRequested: TUSER_ROLE[]) => {
       config.ACCESS_TOKEN_SECRET as string,
     );
 
-   
-
-    const { role, userId, iat } = decoded as JwtPayload;
-
-    const isUserExists = await checkingUserExistDeletedBlocked(userId);
-    const isPasswordChangingTimeGreater =
-      await tokenCreationTimeSmallerThanPasswordChangingTime(
-        iat as number,
-        isUserExists?.passwordChangedAt as Date,
-      );
-
-    if (isUserExists?.passwordChangedAt && isPasswordChangingTimeGreater) {
-      throw new AppError(status.UNAUTHORIZED, 'UnAuthorized Access...!!');
-    }
+    const { role, email, iat } = decoded as JwtPayload;
 
     if (userRequested && !userRequested.includes(role)) {
       throw new AppError(status.UNAUTHORIZED, 'Unauthorized Access....!!!');
     }
-
-    // console.log({ decoded });
 
     req.user = decoded as JwtPayload;
     next();
@@ -51,11 +33,3 @@ const auth = (...userRequested: TUSER_ROLE[]) => {
 };
 
 export default auth;
-
-// decoded: {
-//   userId: 'A-0004',
-//   role: 'admin',
-//   email: 'mujibur@example.com',
-//   iat: 1746982379,
-//   exp: 1747846379
-// }

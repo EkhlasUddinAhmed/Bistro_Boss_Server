@@ -1,12 +1,11 @@
 import { USER_ROLE } from './Auth.constant';
 
 export type TLogIn = {
-  userId: String;
+  email: String;
   password: String;
 };
 
 export type TLoggedUser = {
-  userId: string;
   role: string;
   email: string;
 };

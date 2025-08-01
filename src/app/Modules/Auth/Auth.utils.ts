@@ -40,7 +40,7 @@ export const checkingUserExistPasswordCorrectDeletedBlocked = async (
   payload: TLogIn,
 ) => {
   const isUserExists = await checkingUserExistDeletedBlocked(
-    payload.userId as string,
+    payload.email as string,
   );
 
   //   Checking Password is Correct Or Not.........!!!

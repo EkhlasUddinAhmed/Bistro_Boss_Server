@@ -15,7 +15,12 @@ app.use(cookieParser());
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors({ origin: [`${config.REACT_UI_LINK}`], credentials: true }));
+app.use(
+  cors({
+    origin: [`${config.REACT_UI_LINK}`, `${config.REACT_UI_LINK2}`],
+    credentials: true,
+  }),
+);
 
 app.use('/api/v1', applicationRoute);
 

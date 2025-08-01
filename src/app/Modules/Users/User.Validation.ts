@@ -1,14 +1,14 @@
 import { z } from 'zod';
 
-export const UserCreationValidationSchema = z.object({
-  password: z
-    .string({
-      invalid_type_error: 'Password must be string',
-    })
-    .min(6, 'Password must be at least 6 characters long')
-    .optional(),
-});
+// export const UserCreationValidationSchema = z.object({
+//  email:z.string(
+//  })
+// });
 
-export const UserValidation = {
-  UserCreationValidationSchema,
-};
+// export const UserValidation = {
+//   UserCreationValidationSchema,
+// };
+// email: string;
+//   role: 'superAdmin' | 'admin' | 'user';
+//   status: 'is-Active' | 'blocked';
+//   isSocialLogin: false;

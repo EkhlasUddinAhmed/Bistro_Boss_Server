@@ -1,10 +1,7 @@
 export type TUser = {
-  userId: string;
-  password: string;
-  needsPasswordChange: boolean;
-  passwordChangedAt?: Date;
+  name: string;
   email: string;
-  role: 'superAdmin'|'admin' | 'faculty' | 'student';
+  role: 'superAdmin' | 'admin' | 'user';
   status: 'is-Active' | 'blocked';
-  isDeleted: boolean;
+  isGoogleLogin: boolean;
 };

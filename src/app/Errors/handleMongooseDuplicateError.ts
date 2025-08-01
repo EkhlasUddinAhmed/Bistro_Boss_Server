@@ -7,7 +7,7 @@ const handleMongooseDuplicateError = (error: any): TGenericErrorResponse => {
   const errorSources: TErrorSources[] = [
     {
       path: '',
-      message: extractedMessage+" is already existing",
+      message: extractedMessage + ' is already existing',
     },
   ];
 
