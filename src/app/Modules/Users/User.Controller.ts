@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import sendResponse from '../../utils/sendResponse';
 import status from 'http-status';
 import catchAsync from '../../utils/catchAsync';
 import { UserService } from './User.Service';
+import { NextFunction, Request, Response } from 'express';
 
-const createANewUser = catchAsync(async (req, res, next) => {
+const createANewUser = catchAsync(async (req, res, _next) => {
   const result = await UserService.createANewUserIntoDB(req.body);
   sendResponse(res, {
     statusCode: status.OK,
@@ -13,7 +15,7 @@ const createANewUser = catchAsync(async (req, res, next) => {
   });
 });
 
-const getANewUser = catchAsync(async (req, res, next) => {
+const getANewUser = catchAsync(async (req, res, _next) => {
   const { email } = req.params;
   const result = await UserService.getAUserFromDB(email);
   sendResponse(res, {
@@ -24,26 +26,30 @@ const getANewUser = catchAsync(async (req, res, next) => {
   });
 });
 
-const getAllUsers = catchAsync(async (req, res, next) => {
-  const result = await UserService.getAllUsersFromDB();
-  sendResponse(res, {
-    statusCode: status.OK,
-    success: true,
-    message: 'All Users are retrieved successfully...!!',
-    data: result,
-  });
-});
+const getAllUsers = catchAsync(
+  async (_req: Request, res: Response, _next: NextFunction) => {
+    const result = await UserService.getAllUsersFromDB();
+    sendResponse(res, {
+      statusCode: status.OK,
+      success: true,
+      message: 'All Users are retrieved successfully...!!',
+      data: result,
+    });
+  },
+);
 
-const makeUserAdmin = catchAsync(async (req, res, next) => {
-  const { _id } = req.params;
-  const result = await UserService.makeUserAdminInDB(_id);
-  sendResponse(res, {
-    statusCode: status.OK,
-    success: true,
-    message: 'User is made admin successfully...!!',
-    data: result,
-  });
-});
+const makeUserAdmin = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { _id } = req.params;
+    const result = await UserService.makeUserAdminInDB(_id);
+    sendResponse(res, {
+      statusCode: status.OK,
+      success: true,
+      message: 'User is made admin successfully...!!',
+      data: result,
+    });
+  },
+);
 
 // const getMe = catchAsync(async (req, res, next) => {
 //   const result = await UserService.getMeFromDB(req.user);

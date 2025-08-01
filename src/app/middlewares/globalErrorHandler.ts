@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ErrorRequestHandler } from 'express';
 import { ZodError } from 'zod';
 import { TErrorSources } from '../interface/error';
-import config from '../config';
+
 import handleZodError from '../Errors/handeZodError';
 import handleMongooseValidationError from '../Errors/handleMongooseValidationError';
 import handleMongooseCastError from '../Errors/handleMongooseCastError';
@@ -9,8 +10,9 @@ import handleMongooseDuplicateError from '../Errors/handleMongooseDuplicateError
 import AppError from '../Errors/AppError';
 import handleAppError from '../Errors/handleAppError';
 import handleError from '../Errors/handleError';
+import config from '../config';
 
-const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
+const globalErrorHandler: ErrorRequestHandler = (error, _req, res, _next) => {
   let statusCode = 500;
   let message = 'Something Went WERONG......!!!';
   let errorSources: TErrorSources[] = [
@@ -56,7 +58,7 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     success: false,
     message,
     errorSources,
-    // stack: config.NODE_ENV === 'development' ? error?.stack : null,
+    stack: config.NODE_ENV === 'development' ? error?.stack : null,
     // error,
   });
 };

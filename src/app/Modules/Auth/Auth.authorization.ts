@@ -21,7 +21,7 @@ const auth = (...userRequested: TUSER_ROLE[]) => {
       config.ACCESS_TOKEN_SECRET as string,
     );
 
-    const { role, email, iat } = decoded as JwtPayload;
+    const { role } = decoded as JwtPayload;
 
     if (userRequested && !userRequested.includes(role)) {
       throw new AppError(status.UNAUTHORIZED, 'Unauthorized Access....!!!');

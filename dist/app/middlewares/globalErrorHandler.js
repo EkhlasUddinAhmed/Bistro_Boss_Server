@@ -11,7 +11,8 @@ const handleMongooseDuplicateError_1 = __importDefault(require("../Errors/handle
 const AppError_1 = __importDefault(require("../Errors/AppError"));
 const handleAppError_1 = __importDefault(require("../Errors/handleAppError"));
 const handleError_1 = __importDefault(require("../Errors/handleError"));
-const globalErrorHandler = (error, req, res, next) => {
+const config_1 = __importDefault(require("../config"));
+const globalErrorHandler = (error, _req, res, _next) => {
     let statusCode = 500;
     let message = 'Something Went WERONG......!!!';
     let errorSources = [
@@ -60,7 +61,7 @@ const globalErrorHandler = (error, req, res, next) => {
         success: false,
         message,
         errorSources,
-        // stack: config.NODE_ENV === 'development' ? error?.stack : null,
+        stack: config_1.default.NODE_ENV === 'development' ? error === null || error === void 0 ? void 0 : error.stack : null,
         // error,
     });
 };

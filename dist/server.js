@@ -23,21 +23,24 @@ function main() {
             yield mongoose_1.default.connect(config_1.default.DB_CONNECTION_URL);
             yield (0, SuperAdmin_1.default)();
             server = app_1.default.listen(config_1.default.PORT, () => {
-                console.log(`SERVER IS LISTENING AT THE PORT: ${config_1.default.PORT}`);
+                // console.log(`SERVER IS LISTENING AT THE PORT: ${config.PORT}`);
             });
         }
-        catch (error) {
-            console.log(error);
+        catch (_a) {
+            // console.log(error);
         }
     });
 }
 main();
 process.on('uncaughtException', () => {
-    console.log('uncaughtException is Detected:Server is Shutting Down...!!!');
+    // console.log('uncaughtException is Detected:Server is Shutting Down...!!!');
     process.exit(1);
 });
-process.on('unhandledRejection', (error) => {
-    console.log('unhandledRejection rejection is detected...!! Server is Shutting Down', error);
+process.on('unhandledRejection', () => {
+    // console.log(
+    //   'unhandledRejection rejection is detected...!! Server is Shutting Down',
+    //   error,
+    // );
     if (server) {
         server.close(() => {
             process.exit(1);

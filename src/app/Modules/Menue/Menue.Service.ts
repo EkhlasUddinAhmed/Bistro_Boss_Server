@@ -1,5 +1,5 @@
 import { JwtPayload } from 'jsonwebtoken';
-import { TUser } from '../Users/User.Interface';
+
 import { TFoodMenue, TNewOrder } from './Menue.Interface';
 import { FoodMenueModel, NewOrderModel } from './Menue.Model';
 

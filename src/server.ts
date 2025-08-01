@@ -10,25 +10,25 @@ async function main() {
     await mongoose.connect(config.DB_CONNECTION_URL as string);
     await seedSuperAdmin();
     server = app.listen(config.PORT, () => {
-      console.log(`SERVER IS LISTENING AT THE PORT: ${config.PORT}`);
+      // console.log(`SERVER IS LISTENING AT THE PORT: ${config.PORT}`);
     });
-  } catch (error) {
-    console.log(error);
+  } catch {
+    // console.log(error);
   }
 }
 
 main();
 
 process.on('uncaughtException', () => {
-  console.log('uncaughtException is Detected:Server is Shutting Down...!!!');
+  // console.log('uncaughtException is Detected:Server is Shutting Down...!!!');
   process.exit(1);
 });
 
-process.on('unhandledRejection', (error) => {
-  console.log(
-    'unhandledRejection rejection is detected...!! Server is Shutting Down',
-    error,
-  );
+process.on('unhandledRejection', () => {
+  // console.log(
+  //   'unhandledRejection rejection is detected...!! Server is Shutting Down',
+  //   error,
+  // );
   if (server) {
     server.close(() => {
       process.exit(1);

@@ -13,11 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
+/* eslint-disable @typescript-eslint/no-unused-vars */
 const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
 const http_status_1 = __importDefault(require("http-status"));
 const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 const User_Service_1 = require("./User.Service");
-const createANewUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const createANewUser = (0, catchAsync_1.default)((req, res, _next) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield User_Service_1.UserService.createANewUserIntoDB(req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
@@ -26,7 +27,7 @@ const createANewUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(v
         data: result,
     });
 }));
-const getANewUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const getANewUser = (0, catchAsync_1.default)((req, res, _next) => __awaiter(void 0, void 0, void 0, function* () {
     const { email } = req.params;
     const result = yield User_Service_1.UserService.getAUserFromDB(email);
     (0, sendResponse_1.default)(res, {
@@ -36,7 +37,7 @@ const getANewUser = (0, catchAsync_1.default)((req, res, next) => __awaiter(void
         data: result,
     });
 }));
-const getAllUsers = (0, catchAsync_1.default)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const getAllUsers = (0, catchAsync_1.default)((_req, res, _next) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield User_Service_1.UserService.getAllUsersFromDB();
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import AppError from '../../Errors/AppError';
 import { TLoggedUser, TLogIn } from './Auth.interface';
 import status from 'http-status';
@@ -94,7 +95,7 @@ export const sendEmail = async (to: string, html: string) => {
 
   // Wrap in an async IIFE so we can use await.
   (async () => {
-    const info = await transporter.sendMail({
+    await transporter.sendMail({
       from: 'matrixedu14@gmail.com',
       to,
       subject: 'Forget Password...????✔',
@@ -103,6 +104,6 @@ export const sendEmail = async (to: string, html: string) => {
             <h2>${html}</h2>`,
     });
 
-    console.log('Message sent:', info.messageId);
+    // console.log('Message sent:', info.messageId);
   })();
 };

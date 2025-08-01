@@ -25,7 +25,7 @@ const auth = (...userRequested) => {
             throw new AppError_1.default(http_status_1.default.FORBIDDEN, 'Forbidden Access...!!!');
         }
         const decoded = jsonwebtoken_1.default.verify(accessToken, config_1.default.ACCESS_TOKEN_SECRET);
-        const { role, email, iat } = decoded;
+        const { role } = decoded;
         if (userRequested && !userRequested.includes(role)) {
             throw new AppError_1.default(http_status_1.default.UNAUTHORIZED, 'Unauthorized Access....!!!');
         }

@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sendEmail = exports.tokenCreationTimeSmallerThanPasswordChangingTime = exports.makeAPasswordHashed = exports.generateToken = exports.checkingUserExistPasswordCorrectDeletedBlocked = exports.checkingUserExistDeletedBlocked = void 0;
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const AppError_1 = __importDefault(require("../../Errors/AppError"));
 const http_status_1 = __importDefault(require("http-status"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
@@ -77,7 +78,7 @@ const sendEmail = (to, html) => __awaiter(void 0, void 0, void 0, function* () {
     });
     // Wrap in an async IIFE so we can use await.
     (() => __awaiter(void 0, void 0, void 0, function* () {
-        const info = yield transporter.sendMail({
+        yield transporter.sendMail({
             from: 'matrixedu14@gmail.com',
             to,
             subject: 'Forget Password...????✔',
@@ -85,7 +86,7 @@ const sendEmail = (to, html) => __awaiter(void 0, void 0, void 0, function* () {
             html: `<h2 style="color: red; font-size: 24px;">Click On the link below and reset your password within 10 minits ...!!</h2>
             <h2>${html}</h2>`,
         });
-        console.log('Message sent:', info.messageId);
+        // console.log('Message sent:', info.messageId);
     }))();
 });
 exports.sendEmail = sendEmail;

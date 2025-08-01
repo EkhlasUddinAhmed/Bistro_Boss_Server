@@ -19,6 +19,9 @@ app.use((0, cors_1.default)({
     credentials: true,
 }));
 app.use('/api/v1', applicationRoute_1.default);
+app.get('/', (req, res) => {
+    res.status(200).send('WELLCOME TO BISTROBOSS SERVER');
+});
 app.use(notFound_1.default);
 app.use(globalErrorHandler_1.default);
 exports.default = app;

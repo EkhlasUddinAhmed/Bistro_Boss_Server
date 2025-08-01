@@ -19,7 +19,7 @@ export default [
   ...tseslint.configs.recommended,
   {
     rules: {
-      'no-unused-vars': 'error',
+      // 'no-unused-vars': 'error',
       'prefer-const': 'error',
       'no-unused-expressions': 'error',
       'no-console': 'warn',

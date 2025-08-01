@@ -1,4 +1,4 @@
-import express, { Application } from 'express';
+import express, { Application, Request, Response } from 'express';
 
 import cors from 'cors';
 
@@ -23,6 +23,9 @@ app.use(
 );
 
 app.use('/api/v1', applicationRoute);
+app.get('/', (req: Request, res: Response) => {
+  res.status(200).send('WELLCOME TO BISTROBOSS SERVER');
+});
 
 app.use(notFound);
 app.use(globalErrorHandler);
